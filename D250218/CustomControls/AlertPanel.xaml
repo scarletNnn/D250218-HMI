@@ -1,0 +1,60 @@
+﻿<UserControl
+    x:Class="D250218.CustomControls.AlertPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="clr-namespace:D250218.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:D250218.CustomControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="600"
+    Height="70"
+    Background="White"
+    mc:Ignorable="d">
+
+    <StackPanel
+        x:Name="stack"
+        Width="600"
+        Height="70"
+        Orientation="Horizontal">
+        <StackPanel.Resources>
+            <converter:NegatingConverter x:Key="NegatingConverter" />
+            <Storyboard x:Key="slide">
+                <DoubleAnimation
+                    RepeatBehavior="Forever"
+                    Storyboard.TargetName="transferCurreny"
+                    Storyboard.TargetProperty="X"
+                    From="0"
+                    To="{Binding Width, ElementName=canvas, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NegatingConverter}}"
+                    Duration="00:00:15" />
+            </Storyboard>
+        </StackPanel.Resources>
+        <StackPanel.RenderTransform>
+            <TranslateTransform x:Name="transferCurreny" X="0" />
+        </StackPanel.RenderTransform>
+        <StackPanel.Triggers>
+            <EventTrigger RoutedEvent="StackPanel.Loaded">
+                <BeginStoryboard Storyboard="{StaticResource slide}" />
+            </EventTrigger>
+            <EventTrigger RoutedEvent="StackPanel.SizeChanged">
+                <BeginStoryboard Storyboard="{StaticResource slide}" />
+            </EventTrigger>
+        </StackPanel.Triggers>
+        <Canvas x:Name="canvas" Width="{Binding ActualWidth, ElementName=stack}">
+            <TextBlock
+                x:Name="txtKron"
+                Canvas.Left="0"
+                Margin="0,15,0,0"
+                FontSize="30"
+                Foreground="Red"
+                Text="{Binding Message, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBlock
+                Canvas.Left="{Binding Width, ElementName=canvas, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                Margin="0,15,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="30"
+                Foreground="Red"
+                Text="{Binding Text, ElementName=txtKron, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+        </Canvas>
+    </StackPanel>
+</UserControl>

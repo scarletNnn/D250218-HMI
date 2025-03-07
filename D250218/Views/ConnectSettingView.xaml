@@ -1,0 +1,58 @@
+﻿<Page
+    x:Class="D250218.Views.ConnectSettingView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:D250218.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:vm="clr-namespace:D250218.ViewModels"
+    Title="ConnectSettingView"
+    Width="1700"
+    Height="1000"
+    d:DataContext="{d:DesignInstance Type=vm:ConnectSettingViewModel}"
+    Background="Gainsboro"
+    mc:Ignorable="d">
+
+    <StackPanel>
+        <StackPanel Margin="20" Orientation="Horizontal">
+            <ui:Button
+                Width="150"
+                Height="70"
+                Margin="10"
+                BorderBrush="SlateBlue"
+                BorderThickness="2"
+                Command="{Binding ConnectCommand}"
+                CornerRadius="10"
+                Foreground="SlateBlue"
+                Icon="{ui:SymbolIcon Symbol=Organization24,
+                                     FontSize=32}">
+                <ui:Button.Content>
+                    <TextBlock FontSize="24">连接</TextBlock>
+                </ui:Button.Content>
+            </ui:Button>
+            <ui:TextBox
+                Width="250"
+                Height="70"
+                VerticalAlignment="Center"
+                d:Text="127.0.0.1"
+                FontSize="32"
+                Text="{Binding Ip}"
+                TextAlignment="Center" />
+        </StackPanel>
+        <TextBox Text="{Binding Test[0].Value}" />
+        <Button
+            Width="50"
+            Height="50"
+            Command="{Binding AddCommand}" />
+        <TextBox Text="{Binding Test[1].Value}" />
+        <TextBox Text="{Binding Test2[0]}" />
+        <ui:ToggleSwitch Background="LightGreen" IsChecked="True" />
+
+
+
+
+
+    </StackPanel>
+
+</Page>

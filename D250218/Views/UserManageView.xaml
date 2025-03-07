@@ -1,0 +1,171 @@
+﻿<Page
+    x:Class="D250218.Views.UserManageView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enums="clr-namespace:D250218.Enums"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:D250218.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:vm="clr-namespace:D250218.ViewModels"
+    Title="UserManageView"
+    Width="1700"
+    Height="1000"
+    d:DataContext="{d:DesignInstance Type=vm:UserManageViewModel}"
+    Background="Honeydew"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <!--<ComboBox 绑定Enum>-->
+        <ObjectDataProvider
+            x:Key="levelProvider"
+            MethodName="GetValues"
+            ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:enumLevel" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ui:DataGrid
+            Width="600"
+            Height="500"
+            Margin="0,100,0,0"
+            VerticalAlignment="Top"
+            BorderBrush="DarkViolet"
+            BorderThickness="2"
+            IsReadOnly="True"
+            ItemsSource="{Binding Users}"
+            SelectedItem="{Binding SelectedItems}"
+            SelectionMode="Single" />
+
+        <Border
+            Grid.Column="1"
+            Margin="0,100,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            BorderBrush="BlueViolet"
+            BorderThickness="2"
+            CornerRadius="10">
+            <StackPanel>
+
+                <Grid
+                    Grid.Column="1"
+                    Margin="0,10,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="300" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="40" />
+                    </Grid.RowDefinitions>
+                    <ui:TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Text="Id:" />
+                    <ui:TextBlock
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        VerticalAlignment="Center"
+                        Text="{Binding Id}" />
+                    <ui:TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Text="Username:" />
+                    <ui:TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{Binding Username}" />
+                    <ui:TextBlock
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Text="Password:" />
+                    <ui:TextBox
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Text="{Binding Password}" />
+                    <ui:TextBlock
+                        Grid.Row="6"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        FontSize="24"
+                        Text="Level:" />
+                    <ComboBox
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        ItemsSource="{Binding Source={StaticResource levelProvider}}"
+                        SelectedIndex="{Binding Level}" />
+                </Grid>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <ui:Button
+                        Width="150"
+                        Height="70"
+                        Margin="20"
+                        BorderBrush="HotPink"
+                        BorderThickness="2"
+                        Command="{Binding SearchUserCommand}"
+                        CornerRadius="10"
+                        Foreground="HotPink"
+                        Icon="{ui:SymbolIcon Symbol=PersonSearch24,
+                                             FontSize=32}">
+                        <ui:Button.Content>
+                            <TextBlock FontSize="24">查询</TextBlock>
+                        </ui:Button.Content>
+                    </ui:Button>
+                    <ui:Button
+                        Width="150"
+                        Height="70"
+                        Margin="20"
+                        BorderBrush="CornflowerBlue"
+                        BorderThickness="2"
+                        Command="{Binding AddUserCommand}"
+                        CornerRadius="10"
+                        Foreground="CornflowerBlue"
+                        Icon="{ui:SymbolIcon Symbol=PersonAdd24,
+                                             FontSize=32}">
+                        <ui:Button.Content>
+                            <TextBlock FontSize="24">添加</TextBlock>
+                        </ui:Button.Content>
+                    </ui:Button>
+                    <ui:Button
+                        Width="150"
+                        Height="70"
+                        Margin="20"
+                        BorderBrush="Red"
+                        BorderThickness="2"
+                        Command="{Binding DeleteUserCommand}"
+                        CornerRadius="10"
+                        Foreground="Red"
+                        Icon="{ui:SymbolIcon Symbol=PersonSubtract20,
+                                             FontSize=32}">
+                        <ui:Button.Content>
+                            <TextBlock FontSize="24">删除</TextBlock>
+                        </ui:Button.Content>
+                    </ui:Button>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,718 @@
+﻿<Page
+    x:Class="D250218.Views.Work1View"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behaviors="clr-namespace:D250218.Behaviors"
+    xmlns:converters="clr-namespace:D250218.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:D250218.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:vm="clr-namespace:D250218.ViewModels"
+    Title="Work1View"
+    Width="1700"
+    Height="1000"
+    d:DataContext="{d:DesignInstance Type=vm:Work1ViewModel}"
+    Background="MistyRose"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <converters:LongToDecimalPoint x:Key="LongToDecimalPoint" />
+        <converters:BoolToRunType x:Key="BoolToRunType" />
+        <converters:BoolToRunTypeColor x:Key="BoolToRunTypeColor" />
+        <converters:WordToSpeed x:Key="WordToSpeed" />
+        <converters:WordToSpeedColor x:Key="WordToSpeedColor" />
+    </Page.Resources>
+    <StackPanel>
+        <StackPanel Margin="20" Orientation="Horizontal">
+            <Border
+                BorderBrush="Gray"
+                BorderThickness="2"
+                CornerRadius="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        Margin="10"
+                        FontSize="24"
+                        Foreground="DarkOliveGreen"
+                        Text="XXXXXX轴"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Width="120"
+                        Margin="10"
+                        FontSize="24"
+                        Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}, StringFormat='f3'}"
+                        TextAlignment="Center" />
+                </StackPanel>
+            </Border>
+            <Border
+                Margin="20,0,0,0"
+                BorderBrush="Gray"
+                BorderThickness="2"
+                CornerRadius="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        Margin="10"
+                        FontSize="24"
+                        Foreground="DarkOliveGreen"
+                        Text="XXXXXX轴"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Width="120"
+                        Margin="10"
+                        FontSize="24"
+                        Text="{Binding ModbusService.DataLong[6], Converter={StaticResource LongToDecimalPoint}}"
+                        TextAlignment="Center" />
+                </StackPanel>
+            </Border>
+            <Border
+                Margin="20,0,0,0"
+                BorderBrush="Gray"
+                BorderThickness="2"
+                CornerRadius="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        Margin="10"
+                        FontSize="24"
+                        Foreground="DarkOliveGreen"
+                        Text="XXXXXX轴"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Width="120"
+                        Margin="10"
+                        FontSize="24"
+                        Text="{Binding ModbusService.DataLong[7], Converter={StaticResource LongToDecimalPoint}}"
+                        TextAlignment="Center" />
+                </StackPanel>
+            </Border>
+            <Border
+                Margin="20,0,0,0"
+                BorderBrush="Gray"
+                BorderThickness="2"
+                CornerRadius="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        Margin="10"
+                        FontSize="24"
+                        Foreground="DarkOliveGreen"
+                        Text="XXXXXX轴"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Width="120"
+                        Margin="10"
+                        FontSize="24"
+                        Text="{Binding ModbusService.DataLong[8], Converter={StaticResource LongToDecimalPoint}}"
+                        TextAlignment="Center" />
+                </StackPanel>
+            </Border>
+            <Border
+                Margin="20,0,0,0"
+                BorderBrush="Gray"
+                BorderThickness="2"
+                CornerRadius="10">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        Margin="10"
+                        FontSize="24"
+                        Foreground="DarkOliveGreen"
+                        Text="XXXXXX轴"
+                        TextAlignment="Center" />
+                    <TextBlock
+                        Width="120"
+                        Margin="10"
+                        FontSize="24"
+                        Text="{Binding ModbusService.DataLong[9], Converter={StaticResource LongToDecimalPoint}}"
+                        TextAlignment="Center" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="1.3*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <ui:Button
+                        Width="100"
+                        Height="100"
+                        Background="SlateBlue"
+                        Foreground="Thistle"
+                        Icon="{ui:SymbolIcon Symbol=ArrowUp12,
+                                             Filled=True,
+                                             FontSize=72}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:ButtonBehavior
+                                CommandParameter="200"
+                                PressCommand="{Binding PressCommand}"
+                                ReleaseCommand="{Binding ReleaseCommand}" />
+                        </i:Interaction.Behaviors>
+                    </ui:Button>
+                    <ui:Button
+                        Width="100"
+                        Height="100"
+                        Background="SlateBlue"
+                        Foreground="Thistle"
+                        Icon="{ui:SymbolIcon Symbol=ArrowLeft12,
+                                             Filled=True,
+                                             FontSize=72}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:ButtonBehavior
+                                CommandParameter="201"
+                                PressCommand="{Binding PressCommand}"
+                                ReleaseCommand="{Binding ReleaseCommand}" />
+                        </i:Interaction.Behaviors>
+                    </ui:Button>
+                    <ui:Button
+                        Width="100"
+                        Height="100"
+                        Background="SlateBlue"
+                        Foreground="Thistle"
+                        Icon="{ui:SymbolIcon Symbol=ArrowDown12,
+                                             Filled=True,
+                                             FontSize=72}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:ButtonBehavior
+                                CommandParameter="202"
+                                PressCommand="{Binding PressCommand}"
+                                ReleaseCommand="{Binding ReleaseCommand}" />
+                        </i:Interaction.Behaviors>
+                    </ui:Button>
+                    <ui:Button
+                        Width="100"
+                        Height="100"
+                        Background="SlateBlue"
+                        Foreground="Thistle"
+                        Icon="{ui:SymbolIcon Symbol=ArrowRight12,
+                                             Filled=True,
+                                             FontSize=72}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:ButtonBehavior
+                                CommandParameter="203"
+                                PressCommand="{Binding PressCommand}"
+                                ReleaseCommand="{Binding ReleaseCommand}" />
+                        </i:Interaction.Behaviors>
+                    </ui:Button>
+                    <ui:Button
+                        Width="100"
+                        Height="100"
+                        Background="SlateBlue"
+                        Foreground="Thistle"
+                        Icon="{ui:SymbolIcon Symbol=ArrowClockwise12,
+                                             Filled=True,
+                                             FontSize=72}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:ButtonBehavior
+                                CommandParameter="204"
+                                PressCommand="{Binding PressCommand}"
+                                ReleaseCommand="{Binding ReleaseCommand}" />
+                        </i:Interaction.Behaviors>
+                    </ui:Button>
+                    <ui:Button
+                        Width="100"
+                        Height="100"
+                        Background="SlateBlue"
+                        Foreground="Thistle"
+                        Icon="{ui:SymbolIcon Symbol=ArrowCounterclockwise12,
+                                             Filled=True,
+                                             FontSize=72}">
+                        <i:Interaction.Behaviors>
+                            <behaviors:ButtonBehavior
+                                CommandParameter="205"
+                                PressCommand="{Binding PressCommand}"
+                                ReleaseCommand="{Binding ReleaseCommand}" />
+                        </i:Interaction.Behaviors>
+                    </ui:Button>
+
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontFamily" Value="STXinwei" />
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBox
+                        Width="120"
+                        Margin="5"
+                        VerticalAlignment="Center"
+                        d:Text="1234.123"
+                        FontSize="20"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        Tag="3010"
+                        Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                        TextAlignment="Center">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TextBoxBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
+                    <ui:Button
+                        Width="120"
+                        Height="60"
+                        Margin="5"
+                        BorderBrush="{Binding ModbusService.DataBit[10], Converter={StaticResource BoolToRunTypeColor}}"
+                        BorderThickness="2"
+                        Command="{Binding RunTypeChangedCommand}"
+                        CommandParameter="7"
+                        CornerRadius="10"
+                        Foreground="{Binding ModbusService.DataBit[10], Converter={StaticResource BoolToRunTypeColor}}"
+                        Icon="{ui:SymbolIcon Symbol=Ruler24,
+                                             FontSize=30}">
+                        <ui:Button.Content>
+                            <TextBlock
+                                Width="50"
+                                d:Text="寸动"
+                                FontSize="24"
+                                Text="{Binding ModbusService.DataBit[10], Converter={StaticResource BoolToRunType}}" />
+                        </ui:Button.Content>
+                    </ui:Button>
+                    <ui:Button
+                        Width="120"
+                        Height="60"
+                        Margin="5"
+                        BorderBrush="{Binding ModbusService.DataWord[20], Converter={StaticResource WordToSpeedColor}}"
+                        BorderThickness="2"
+                        Command="{Binding SpeedTypeChangedCommand}"
+                        CommandParameter="7"
+                        CornerRadius="10"
+                        Foreground="{Binding ModbusService.DataWord[20], Converter={StaticResource WordToSpeedColor}}"
+                        Icon="{ui:SymbolIcon Symbol=TopSpeed24,
+                                             FontSize=30}">
+                        <ui:Button.Content>
+                            <TextBlock
+                                Width="50"
+                                d:Text="低速"
+                                FontSize="24"
+                                Text="{Binding ModbusService.DataWord[20], Converter={StaticResource WordToSpeed}}" />
+                        </ui:Button.Content>
+                    </ui:Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel
+                Grid.Column="1"
+                Margin="10"
+                Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="STXinwei" />
+                    </Style>
+                </StackPanel.Resources>
+                <Border
+                    BorderBrush="LightBlue"
+                    BorderThickness="2"
+                    CornerRadius="10">
+                    <StackPanel>
+                        <StackPanel
+                            Height="70"
+                            Margin="5"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Text="示教参数示教参数12"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="Orange"
+                                BorderThickness="2"
+                                Command="{Binding TeachCommand}"
+                                CommandParameter="1"
+                                CornerRadius="10"
+                                Foreground="Orange"
+                                Icon="{ui:SymbolIcon Symbol=Pen24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="示教" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="PaleVioletRed"
+                                BorderThickness="2"
+                                Command="{Binding CalibrateCommand}"
+                                CommandParameter="2"
+                                CornerRadius="10"
+                                Foreground="PaleVioletRed"
+                                Icon="{ui:SymbolIcon Symbol=PointScan24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="校准" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                        </StackPanel>
+                        <StackPanel
+                            Height="70"
+                            Margin="5"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Text="示教参数示教参数12"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="Orange"
+                                BorderThickness="2"
+                                Command="{Binding TeachCommand}"
+                                CommandParameter="3"
+                                CornerRadius="10"
+                                Foreground="Orange"
+                                Icon="{ui:SymbolIcon Symbol=Pen24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="示教" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="PaleVioletRed"
+                                BorderThickness="2"
+                                Command="{Binding CalibrateCommand}"
+                                CommandParameter="4"
+                                CornerRadius="10"
+                                Foreground="PaleVioletRed"
+                                Icon="{ui:SymbolIcon Symbol=PointScan24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="校准" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                        </StackPanel>
+                        <StackPanel
+                            Height="70"
+                            Margin="5"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Text="示教参数示教参数12"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="Orange"
+                                BorderThickness="2"
+                                Command="{Binding TeachCommand}"
+                                CommandParameter="5"
+                                CornerRadius="10"
+                                Foreground="Orange"
+                                Icon="{ui:SymbolIcon Symbol=Pen24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="示教" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="PaleVioletRed"
+                                BorderThickness="2"
+                                Command="{Binding CalibrateCommand}"
+                                CommandParameter="6"
+                                CornerRadius="10"
+                                Foreground="PaleVioletRed"
+                                Icon="{ui:SymbolIcon Symbol=PointScan24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="校准" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                        </StackPanel>
+                        <StackPanel
+                            Height="70"
+                            Margin="5"
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                FontSize="24"
+                                Text="示教参数示教参数12"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <TextBox
+                                Width="120"
+                                Margin="5"
+                                VerticalAlignment="Center"
+                                d:Text="1234.123"
+                                FontSize="20"
+                                IsReadOnly="{Binding IsReadOnly}"
+                                Tag="3010"
+                                Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                                TextAlignment="Center">
+                                <i:Interaction.Behaviors>
+                                    <behaviors:TextBoxBehavior />
+                                </i:Interaction.Behaviors>
+                            </TextBox>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="Orange"
+                                BorderThickness="2"
+                                Command="{Binding TeachCommand}"
+                                CommandParameter="7"
+                                CornerRadius="10"
+                                Foreground="Orange"
+                                Icon="{ui:SymbolIcon Symbol=Pen24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="示教" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                            <ui:Button
+                                Width="120"
+                                Height="60"
+                                Margin="5"
+                                BorderBrush="PaleVioletRed"
+                                BorderThickness="2"
+                                Command="{Binding CalibrateCommand}"
+                                CommandParameter="8"
+                                CornerRadius="10"
+                                Foreground="PaleVioletRed"
+                                Icon="{ui:SymbolIcon Symbol=PointScan24,
+                                                     FontSize=30}">
+                                <ui:Button.Content>
+                                    <TextBlock FontSize="24" Text="校准" />
+                                </ui:Button.Content>
+                            </ui:Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+        </Grid>
+    </StackPanel>
+</Page>

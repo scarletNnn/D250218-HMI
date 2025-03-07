@@ -1,0 +1,69 @@
+﻿<UserControl
+    x:Class="D250218.CustomControls.InputOutputBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:conv="clr-namespace:D250218.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:D250218.CustomControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Width="325"
+    Height="50"
+    Background="AliceBlue"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <conv:BoolToColor x:Key="BoolToColor" />
+    </UserControl.Resources>
+    <Border
+        Width="325"
+        Height="50"
+        Padding="5"
+        BorderBrush="BlueViolet"
+        BorderThickness="1.5"
+        CornerRadius="5">
+        <StackPanel Orientation="Horizontal">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                d:Text="IN_001"
+                Text="{Binding SerialNumber, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextAlignment="Center" />
+            <TextBlock
+                Width="200"
+                Margin="10,0,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                d:Text="机器人放料位治具有无检测123"
+                Text="{Binding ControlName, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                TextAlignment="Center" />
+            <ui:Button
+                x:Name="data"
+                Width="45"
+                Height="40"
+                Margin="10,0,0,0"
+                Command="{Binding Command, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                CommandParameter="{Binding CommandParameter, RelativeSource={RelativeSource AncestorType=UserControl}}">
+                <ui:Button.Template>
+                    <ControlTemplate TargetType="ui:Button">
+                        <!--  自定义外观  -->
+                        <Border
+                            x:Name="border"
+                            Padding="5"
+                            Background="{Binding Data, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource BoolToColor}}"
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!--  无操作，保持原色  -->
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <!--  无操作，保持原色  -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </ui:Button.Template>
+            </ui:Button>
+        </StackPanel>
+    </Border>
+</UserControl>

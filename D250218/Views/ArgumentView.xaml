@@ -1,0 +1,201 @@
+﻿<Page
+    x:Class="D250218.Views.ArgumentView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:customcontrols="clr-namespace:D250218.CustomControls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:D250218.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:vm="clr-namespace:D250218.ViewModels"
+    Title="ArgumentView"
+    Width="1700"
+    Height="1000"
+    d:DataContext="{d:DesignInstance Type=vm:ArgumentViewModel}"
+    Background="SeaShell"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataBit[0]}"
+                DataName="Test"
+                DataUnit="Bool"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="0" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataBit[1]}"
+                DataName="Test"
+                DataUnit="Bool"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="1" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataBit[2]}"
+                DataName="Test"
+                DataUnit="Bool"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="2" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataBit[3]}"
+                DataName="Test"
+                DataUnit="Bool"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="3" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataBit[4]}"
+                DataName="Test"
+                DataUnit="Bool"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="4" />
+        </StackPanel>
+        <Separator
+            Grid.Column="1"
+            BorderBrush="LightBlue"
+            BorderThickness="1">
+            <Separator.LayoutTransform>
+                <RotateTransform Angle="90" />
+            </Separator.LayoutTransform>
+        </Separator>
+        <StackPanel Grid.Column="2">
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataWord[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Max="100"
+                Tag="0" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataWord[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="1" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataWord[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="2" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataWord[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="3" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataWord[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="4" />
+        </StackPanel>
+        <Separator
+            Grid.Column="3"
+            BorderBrush="LightBlue"
+            BorderThickness="1">
+            <Separator.LayoutTransform>
+                <RotateTransform Angle="90" />
+            </Separator.LayoutTransform>
+        </Separator>
+        <StackPanel Grid.Column="4">
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataLong[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="3000" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataLong[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="3002" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataLong[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="3004" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataLong[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="3006" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataLong[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="3008" />
+        </StackPanel>
+        <Separator
+            Grid.Column="5"
+            BorderBrush="LightBlue"
+            BorderThickness="1">
+            <Separator.LayoutTransform>
+                <RotateTransform Angle="90" />
+            </Separator.LayoutTransform>
+        </Separator>
+        <StackPanel Grid.Column="6">
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataFloat[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="6000" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataFloat[1], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="6002" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataFloat[2], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="6004" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataFloat[3], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="6006" />
+            <customcontrols:ArgumentBox
+                Margin="0,10,0,0"
+                Data="{Binding ModbusService.DataFloat[4], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                DataName="Test"
+                DataUnit="mm/s"
+                IsReadOnly="{Binding IsReadOnly}"
+                Tag="6008" />
+        </StackPanel>
+    </Grid>
+</Page>

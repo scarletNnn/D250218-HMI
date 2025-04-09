@@ -115,6 +115,7 @@ public partial class ModbusService : ObservableObject, IModbusService
         {
             await UpdateDataAsync();
         });
+        task.Start();
     }
 
     /// <summary>

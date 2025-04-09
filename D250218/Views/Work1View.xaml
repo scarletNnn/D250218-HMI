@@ -236,19 +236,19 @@
                         </Style>
                     </StackPanel.Resources>
                     <StackPanel Margin="5" Orientation="Horizontal">
-                        <TextBox
-                            Width="120"
-                            VerticalAlignment="Center"
-                            d:Text="1234.123"
-                            FontSize="20"
-                            IsReadOnly="{Binding IsReadOnly}"
-                            Tag="3010"
-                            Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
-                            TextAlignment="Center">
-                            <i:Interaction.Behaviors>
-                                <behaviors:TextBoxBehavior />
-                            </i:Interaction.Behaviors>
-                        </TextBox>
+                    <TextBox
+                        Width="120"
+                        VerticalAlignment="Center"
+                        d:Text="1234.123"
+                        FontSize="20"
+                        IsReadOnly="{Binding IsReadOnly}"
+                        Tag="3010"
+                        Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                        TextAlignment="Center">
+                        <i:Interaction.Behaviors>
+                            <behaviors:TextBoxBehavior />
+                        </i:Interaction.Behaviors>
+                    </TextBox>
                         <TextBlock
                             VerticalAlignment="Center"
                             FontSize="20"

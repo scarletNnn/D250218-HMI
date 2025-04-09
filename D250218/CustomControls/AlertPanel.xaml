@@ -33,16 +33,16 @@
                 <EventTrigger RoutedEvent="Binding.TargetUpdated">
                     <BeginStoryboard>
                         <Storyboard>
-                            <DoubleAnimation
-                                RepeatBehavior="Forever"
+                <DoubleAnimation
+                    RepeatBehavior="Forever"
                                 Storyboard.TargetName="stack"
                                 Storyboard.TargetProperty="RenderTransform.X"
                                 From="600"
                                 To="{Binding Width, ElementName=text, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NegatingConverter}}"
                                 Duration="0:0:10" />
-                        </Storyboard>
+            </Storyboard>
                     </BeginStoryboard>
-                </EventTrigger>
+            </EventTrigger>
             </TextBlock.Triggers>
         </TextBlock>
     </StackPanel>

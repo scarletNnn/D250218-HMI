@@ -10,7 +10,7 @@ using SqliteDataAccess.Models;
 
 namespace D250218.Services;
 
-public partial class ModbusService : ObservableObject, IModbusService
+public partial class ModbusService : ObservableObject, IModbusService, IDisposable
 {
     private readonly IModbusAccess _modbusAccess;
     private readonly IDataAccess _dataAccess;
@@ -98,7 +98,10 @@ public partial class ModbusService : ObservableObject, IModbusService
             new() { Value = false, Message = "报警XXXXX4" },
             new() { Value = false, Message = "报警XXXXX5" },
             new() { Value = false, Message = "报警XXXXX6" },
-            new() { Value = false, Message = "报警XXXXX7" }
+            new() { Value = false, Message = "报警XXXXX7" },
+            new() { Value = false, Message = "报警XXXXX8" },
+            new() { Value = false, Message = "报警XXXXX9" },
+            new() { Value = false, Message = "报警XXXX10" }
         };
     }
 
@@ -115,6 +118,7 @@ public partial class ModbusService : ObservableObject, IModbusService
         {
             await UpdateDataAsync();
         });
+        //task.Start();
     }
 
     /// <summary>
@@ -140,7 +144,7 @@ public partial class ModbusService : ObservableObject, IModbusService
                         var Word = await _modbusAccess.ReadWordAsync(0, 100);
                         var Long = await _modbusAccess.ReadLongAsync(3000, 100);
                         var Float = await _modbusAccess.ReadFloatAsync(6000, 100);
-                        var Alert = await _modbusAccess.ReadBitAsync(100, 7);
+                        var Alert = await _modbusAccess.ReadBitAsync(100, 10);
                         var Production = await _modbusAccess.ReadBitAsync(200, 1);
 
                         for (int i = 0; i < 100; i++)
@@ -153,7 +157,7 @@ public partial class ModbusService : ObservableObject, IModbusService
                             DataFloat[i] = Float[i];
                         }
 
-                        for (int i = 0; i < 7; i++)
+                        for (int i = 0; i < 10; i++)
                         {
                             DataAlert[i].Value = Alert[i];
                         }
@@ -207,5 +211,10 @@ public partial class ModbusService : ObservableObject, IModbusService
         Flag = false;
         await _modbusAccess.WriteFloatAsync(startAddress, value);
         Flag = true;
+    }
+
+    public void Dispose()
+    {
+        _modbusAccess.DisconnectAsync();
     }
 }

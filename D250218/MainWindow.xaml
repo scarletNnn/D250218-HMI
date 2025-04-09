@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     xmlns:vm="clr-namespace:D250218.ViewModels"
+    xmlns:behaviors="clr-namespace:D250218.Behaviors"
     x:Name="mainWindow"
     Title="MainWindow"
     Width="1920"
@@ -135,6 +136,7 @@
                             Foreground="OrangeRed"
                             Icon="{ui:SymbolIcon Symbol=AlertOff24,
                                                  FontSize=32}" />
+                        <!--<behaviors:RunningBlock Content="{Binding AlertText}" />-->
                         <customs:AlertPanel Message="{Binding AlertText}" />
                     </StackPanel>
                 </Border>

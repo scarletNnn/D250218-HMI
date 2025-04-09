@@ -11,13 +11,22 @@ namespace D250218.ViewModels;
 public partial class ConnectSettingViewModel : ObservableValidator
 {
     private readonly IModbusService _modbusService;
+    private readonly MainWindow mainWindow;
 
-    public ConnectSettingViewModel(IModbusService modbusService)
+    public ConnectSettingViewModel(IModbusService modbusService, MainWindow mainWindow)
     {
         _modbusService = modbusService;
+        this.mainWindow = mainWindow;
         Test.Add(new() { Value = 0 });
         Test.Add(new() { Value = 0 });
         Test2.Add(0.0f);
+
+        mainWindow.Closed += MainWindow_Closed;
+    }
+
+    private void MainWindow_Closed(object? sender, EventArgs e)
+    {
+        _modbusService.DisconnectAsync();
     }
 
     public ConnectSettingViewModel() { }

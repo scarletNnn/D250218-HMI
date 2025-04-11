@@ -39,7 +39,7 @@
                                 Duration="0:0:15" />
                         </Storyboard>
                     </BeginStoryboard>
-                </EventTrigger>
+            </EventTrigger>
             </TextBlock.Triggers>
         </TextBlock>-->
 

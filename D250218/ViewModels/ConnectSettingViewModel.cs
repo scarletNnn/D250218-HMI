@@ -35,9 +35,6 @@ public partial class ConnectSettingViewModel : ObservableValidator
     ObservableCollection<DataInt> test = new();
 
     [ObservableProperty]
-    string erroMessage;
-
-    [ObservableProperty]
     ObservableCollection<float> test2 = new();
 
     [ObservableProperty]
@@ -46,14 +43,17 @@ public partial class ConnectSettingViewModel : ObservableValidator
     [ObservableProperty]
     string _Ip = "127.0.0.1";
 
-    partial void OnTestChanged(ObservableCollection<DataInt> value)
-    {
-        if (HasErrors)
-        {
-            ErroMessage = string.Join(Environment.NewLine, GetErrors());
-        }
-        ErroMessage = "";
-    }
+    //partial void OnTestChanged(ObservableCollection<DataInt> value)
+    //{
+    //    ValidateProperty(value, nameof(test));
+
+    //    ValidateAllProperties();
+    //    if (HasErrors)
+    //    {
+    //        ErroMessage = string.Join(Environment.NewLine, GetErrors());
+    //    }
+    //    ErroMessage = "";
+    //}
 
     [RelayCommand]
     async Task Connect()
@@ -95,13 +95,18 @@ public partial class DataInt : ObservableValidator
     [ObservableProperty]
     int max;
 
+    [ObservableProperty]
+    string? errorMessage;
+
     partial void OnValueChanged(int oldValue, int newValue)
     {
         ValidateProperty(newValue, nameof(Value));
-        //if (HasErrors)
-        //{
-        //    Value = oldValue;
-        //    //Value = Math.Clamp(Value, 0, 100);
-        //}
+        //ValidateAllProperties();
+        if (HasErrors)
+        {
+            ErrorMessage = string.Join(Environment.NewLine, GetErrors());
+            return;
+        }
+        ErrorMessage = "";
     }
 }

@@ -204,6 +204,9 @@
   <data name="SettingsButton" xml:space="preserve">
     <value>设置</value>
   </data>
+  <data name="SnTestButton" xml:space="preserve">
+    <value>扫码测试</value>
+  </data>
   <data name="Stop" xml:space="preserve">
     <value>急停</value>
   </data>

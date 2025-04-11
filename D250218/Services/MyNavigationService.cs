@@ -119,4 +119,13 @@ public class MyNavigationService
         var vm = _serviceProvider.GetRequiredService<Work1ViewModel>();
         _navigationService.Navigate(typeof(Work1View), vm);
     }
+
+    /// <summary>
+    /// 导航到Mes界面
+    ///</summary>
+    public void NavigateToMesView()
+    {
+        var vm = _serviceProvider.GetRequiredService<MesViewModel>();
+        _navigationService.Navigate(typeof(MesView), vm);
+    }
 }

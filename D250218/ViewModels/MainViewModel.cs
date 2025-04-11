@@ -218,6 +218,15 @@ public partial class MainViewModel : ObservableObject
         _myNavigationService.NavigateToWork1View();
     }
 
+    /// <summary>
+    /// 导航到Mes界面
+    /// </summary>
+    [RelayCommand]
+    void NavigatedToMesView()
+    {
+        _myNavigationService.NavigateToMesView();
+    }
+
     #endregion
 
     /// <summary>

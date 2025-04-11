@@ -109,6 +109,7 @@
             Height="50"
             Command="{Binding AddCommand}" />
         <TextBox Text="{Binding Test[1].Value}" />
+        <TextBlock Text="{Binding Test[1].ErrorMessage}" />
         <TextBox Text="{Binding Test2[0]}" />
         <ui:ToggleSwitch Background="LightGreen" IsChecked="True" />
 

@@ -46,6 +46,7 @@ public partial class App : Application
         services.AddSingleton<IsEnableView>();
         services.AddSingleton<AlertView>();
         services.AddSingleton<Work1View>();
+        services.AddTransient<MesView>();
         // 注册ViewModel
         services.AddSingleton<MainViewModel>();
         services.AddSingleton<LoginViewModel>();
@@ -58,12 +59,14 @@ public partial class App : Application
         services.AddSingleton<IsEnableViewModel>();
         services.AddSingleton<AlertViewModel>();
         services.AddSingleton<Work1ViewModel>();
+        services.AddTransient<MesViewModel>();
         // 注册服务
         services.AddSingleton<INavigationService, NavigationService>();
         services.AddSingleton<INavigationViewPageProvider, PageService>();
         services.AddSingleton<MyNavigationService>();
         services.AddSingleton<IPermissionService, PermissionService>();
         services.AddSingleton<IModbusService, ModbusService>();
+        services.AddSingleton<ISerialPortService, SerialPortService>();
         services.AddSqliteDataAccess();
         services.AddModbusDataAccess();
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -10,7 +6,7 @@ using System.Windows.Media.Animation;
 namespace D250218.Behaviors;
 
 [TemplatePart(Name = ElementContent, Type = typeof(FrameworkElement))]
-[TemplatePart(Name = ElementPanel, Type = typeof(Panel))]
+[TemplatePart(Name = ElementPanel, Type = typeof(Plane))]
 public class RunningBlock : ContentControl
 {
     private const string ElementContent = "PART_ContentElement";
@@ -45,6 +41,8 @@ public class RunningBlock : ContentControl
             FrameworkPropertyMetadataOptions.AffectsRender
         )
     );
+
+    //AffectsRender 更改此依赖属性的值会影响呈现或布局组合的某一方面（不是测量或排列过程） 当属性值改变时，会导致控件的重新渲染。
 
     public static readonly DependencyProperty DurationProperty = DependencyProperty.Register(
         "Duration",
@@ -128,7 +126,7 @@ public class RunningBlock : ContentControl
         PropertyPath path;
 
         numTo = 0.0 - _elementPanel.ActualWidth;
-        numForm = 600; //base.ActualWidth;
+        numForm = 600;
 
         path = new PropertyPath(
             "(UIElement.RenderTransform).(TransformGroup.Children)[0].(TranslateTransform.X)"

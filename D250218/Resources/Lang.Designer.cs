@@ -322,6 +322,15 @@ namespace D250218.Resources {
         }
         
         /// <summary>
+        ///   查找类似 SnTest 的本地化字符串。
+        /// </summary>
+        internal static string SnTestButton {
+            get {
+                return ResourceManager.GetString("SnTestButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Stop 的本地化字符串。
         /// </summary>
         internal static string Stop {

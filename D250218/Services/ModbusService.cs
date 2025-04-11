@@ -72,8 +72,11 @@ public partial class ModbusService : ObservableObject, IModbusService, IDisposab
 
     public async Task DisconnectAsync()
     {
-        _cts.Cancel();
-        await _modbusAccess.DisconnectAsync();
+        if (_cts != null)
+        {
+            _cts.Cancel();
+            await _modbusAccess.DisconnectAsync();
+        }
     }
 
     /// <summary>
@@ -163,8 +166,9 @@ public partial class ModbusService : ObservableObject, IModbusService, IDisposab
                         }
 
                         ProductionFlag = Production[0];
+
+                        Thread.Sleep(100);
                     }
-                    await Task.Delay(100, _cts.Token);
                 }
                 catch (OperationCanceledException)
                 {

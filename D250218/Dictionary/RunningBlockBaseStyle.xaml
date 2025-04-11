@@ -13,7 +13,7 @@
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{Binding CornerRadius}">
+                        CornerRadius="{Binding CornerRadius, RelativeSource={RelativeSource TemplatedParent}}">
                         <Grid ClipToBounds="True">
                             <Grid x:Name="PART_Panel" HorizontalAlignment="Left">
                                 <ContentPresenter
@@ -39,5 +39,5 @@
         </Style.Triggers>
     </Style>
 
-    
+
 </ResourceDictionary>

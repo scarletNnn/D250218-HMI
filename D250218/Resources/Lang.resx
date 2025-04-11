@@ -204,6 +204,9 @@
   <data name="SettingsButton" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SnTestButton" xml:space="preserve">
+    <value>SnTest</value>
+  </data>
   <data name="Stop" xml:space="preserve">
     <value>Stop</value>
   </data>

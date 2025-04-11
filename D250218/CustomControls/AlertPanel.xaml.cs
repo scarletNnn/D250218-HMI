@@ -1,5 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+<<<<<<<<< Temporary merge branch 1
+=========
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;

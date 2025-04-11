@@ -99,10 +99,10 @@
             <StackPanel>
                 <TextBlock
                     x:Name="text"
-                    FontSize="32"
+                FontSize="32"
                     Text="报警XXXXX1" />
                 <TextBlock Text="{Binding ActualWidth, ElementName=text}" />
-            </StackPanel>
+        </StackPanel>
         </Canvas>
         <Button
             Width="50"

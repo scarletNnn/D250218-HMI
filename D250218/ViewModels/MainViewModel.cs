@@ -95,7 +95,9 @@ public partial class MainViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            ModbusService.Flag = true;
+            //ModbusService.Flag = true;
+            ModbusService.Resume();
+
             MessageBox.Show(ex.Message);
         }
     }
@@ -113,7 +115,9 @@ public partial class MainViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            ModbusService.Flag = true;
+            //ModbusService.Flag = true;
+            ModbusService.Resume();
+
             MessageBox.Show(ex.Message);
         }
     }

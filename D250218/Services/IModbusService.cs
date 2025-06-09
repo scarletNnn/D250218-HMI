@@ -14,8 +14,8 @@ public interface IModbusService
     ObservableCollection<int> DataLong { get; }
     ObservableCollection<float> DataFloat { get; }
     BindingList<Alert> DataAlert { get; }
-
-    bool Flag { get; set; }
+    void Pause();
+    void Resume();
     Task ConnectAsync(string ip, int port);
     Task DisconnectAsync();
     Task InitializeModbus(string ip);

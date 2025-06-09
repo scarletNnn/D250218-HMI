@@ -53,7 +53,8 @@ public partial class IsEnableViewModel : ObservableObject
         }
         catch (Exception ex)
         {
-            ModbusService.Flag = true;
+            //ModbusService.Flag = true;
+            ModbusService.Resume();
             MessageBox.Show(ex.Message);
         }
     }

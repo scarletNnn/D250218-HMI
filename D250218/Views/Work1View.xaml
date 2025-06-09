@@ -136,8 +136,35 @@
                 <ColumnDefinition Width="1.3*" />
             </Grid.ColumnDefinitions>
             <StackPanel>
-                <StackPanel Orientation="Horizontal">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                        <RowDefinition Height="100" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        Text="Y轴" />
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="X轴" />
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Text="R轴" />
                     <ui:Button
+                        Grid.Row="1"
+                        Grid.Column="2"
                         Width="100"
                         Height="100"
                         Background="SlateBlue"
@@ -153,6 +180,8 @@
                         </i:Interaction.Behaviors>
                     </ui:Button>
                     <ui:Button
+                        Grid.Row="2"
+                        Grid.Column="1"
                         Width="100"
                         Height="100"
                         Background="SlateBlue"
@@ -168,6 +197,8 @@
                         </i:Interaction.Behaviors>
                     </ui:Button>
                     <ui:Button
+                        Grid.Row="3"
+                        Grid.Column="2"
                         Width="100"
                         Height="100"
                         Background="SlateBlue"
@@ -183,6 +214,8 @@
                         </i:Interaction.Behaviors>
                     </ui:Button>
                     <ui:Button
+                        Grid.Row="2"
+                        Grid.Column="4"
                         Width="100"
                         Height="100"
                         Background="SlateBlue"
@@ -198,6 +231,8 @@
                         </i:Interaction.Behaviors>
                     </ui:Button>
                     <ui:Button
+                        Grid.Row="4"
+                        Grid.Column="4"
                         Width="100"
                         Height="100"
                         Background="SlateBlue"
@@ -213,6 +248,8 @@
                         </i:Interaction.Behaviors>
                     </ui:Button>
                     <ui:Button
+                        Grid.Row="4"
+                        Grid.Column="1"
                         Width="100"
                         Height="100"
                         Background="SlateBlue"
@@ -228,7 +265,7 @@
                         </i:Interaction.Behaviors>
                     </ui:Button>
 
-                </StackPanel>
+                </Grid>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">
@@ -236,19 +273,19 @@
                         </Style>
                     </StackPanel.Resources>
                     <StackPanel Margin="5" Orientation="Horizontal">
-                    <TextBox
-                        Width="120"
-                        VerticalAlignment="Center"
-                        d:Text="1234.123"
-                        FontSize="20"
-                        IsReadOnly="{Binding IsReadOnly}"
-                        Tag="3010"
-                        Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
-                        TextAlignment="Center">
-                        <i:Interaction.Behaviors>
-                            <behaviors:TextBoxBehavior />
-                        </i:Interaction.Behaviors>
-                    </TextBox>
+                        <TextBox
+                            Width="120"
+                            VerticalAlignment="Center"
+                            d:Text="1234.123"
+                            FontSize="20"
+                            IsReadOnly="{Binding IsReadOnly}"
+                            Tag="3010"
+                            Text="{Binding ModbusService.DataLong[5], Converter={StaticResource LongToDecimalPoint}}"
+                            TextAlignment="Center">
+                            <i:Interaction.Behaviors>
+                                <behaviors:TextBoxBehavior />
+                            </i:Interaction.Behaviors>
+                        </TextBox>
                         <TextBlock
                             VerticalAlignment="Center"
                             FontSize="20"
@@ -310,6 +347,58 @@
                     BorderThickness="2"
                     CornerRadius="10">
                     <StackPanel>
+                        <StackPanel>
+                            <StackPanel Margin="5" Orientation="Horizontal">
+                                <Border
+                                    Width="120"
+                                    Margin="135,5,5,5"
+                                    BorderBrush="Gray"
+                                    BorderThickness="2"
+                                    CornerRadius="10">
+                                    <ui:TextBlock
+                                        FontSize="24"
+                                        Foreground="Brown"
+                                        Text="X轴"
+                                        TextAlignment="Center" />
+                                </Border>
+                                <Border
+                                    Width="120"
+                                    Margin="5"
+                                    BorderBrush="Gray"
+                                    BorderThickness="2"
+                                    CornerRadius="10">
+                                    <ui:TextBlock
+                                        FontSize="24"
+                                        Foreground="Brown"
+                                        Text="Y轴"
+                                        TextAlignment="Center" />
+                                </Border>
+                                <Border
+                                    Width="120"
+                                    Margin="5"
+                                    BorderBrush="Gray"
+                                    BorderThickness="2"
+                                    CornerRadius="10">
+                                    <ui:TextBlock
+                                        FontSize="24"
+                                        Foreground="Brown"
+                                        Text="Z轴"
+                                        TextAlignment="Center" />
+                                </Border>
+                                <Border
+                                    Width="120"
+                                    Margin="5"
+                                    BorderBrush="Gray"
+                                    BorderThickness="2"
+                                    CornerRadius="10">
+                                    <ui:TextBlock
+                                        FontSize="24"
+                                        Foreground="Brown"
+                                        Text="R轴"
+                                        TextAlignment="Center" />
+                                </Border>
+                            </StackPanel>
+                        </StackPanel>
                         <StackPanel
                             Height="70"
                             Margin="5"

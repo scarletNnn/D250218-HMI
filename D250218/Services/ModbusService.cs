@@ -44,6 +44,16 @@ public partial class ModbusService : ObservableObject, IModbusService, IDisposab
     private BindingList<Alert> _DataAlert = new();
 
     /// <summary>
+    /// 读写线程
+    /// </summary>
+    private Thread? _workerThread;
+
+    /// <summary>
+    /// 实现线程的暂停和继续
+    /// </summary>
+    private ManualResetEvent _isRunningEvent = new ManualResetEvent(false); // 初始是关闭的
+
+    /// <summary>
     /// 产量Flag
     /// </summary>
     [ObservableProperty]
@@ -62,8 +72,7 @@ public partial class ModbusService : ObservableObject, IModbusService, IDisposab
     /// <summary>
     /// 读写锁
     /// </summary>
-    [ObservableProperty]
-    bool _Flag = false;
+
 
     public async Task ConnectAsync(string ip, int port)
     {
@@ -84,7 +93,7 @@ public partial class ModbusService : ObservableObject, IModbusService, IDisposab
     /// </summary>
     public void InitializeData()
     {
-        for (ushort i = 0; i < 100; i++)
+        for (ushort i = 0; i < 500; i++)
         {
             DataIN.Add(false);
             DataOP.Add(false);
@@ -111,69 +120,81 @@ public partial class ModbusService : ObservableObject, IModbusService, IDisposab
     public async Task InitializeModbus(string ip)
     {
         await _modbusAccess.ConnectAsync(ip, 502);
-        Flag = true;
-        //Task task = new Task(async () =>
-        //{
-        //    await UpdateDataAsync();
-        //});
-        //task.Start();
-        await Task.Run(async () =>
-        {
-            await UpdateDataAsync();
-        });
-        //task.Start();
+
+        _workerThread = new Thread(UpdateDataAsync);
+        _isRunningEvent.Set(); // 线程开始时放行
+        _workerThread.Start();
+    }
+
+    /// <summary>
+    /// 暂停线程
+    /// </summary>
+    public void Pause()
+    {
+        _isRunningEvent.Reset(); // 关闭信号量
+    }
+
+    /// <summary>
+    /// 重置线程
+    /// </summary>
+    public void Resume()
+    {
+        _isRunningEvent.Set(); // 放行信号量
     }
 
     /// <summary>
     /// 读数据
     /// </summary>
     /// <returns></returns>
-    private async Task UpdateDataAsync()
+    private void UpdateDataAsync()
     {
         _cts = new CancellationTokenSource();
         try
         {
-            //if (!_modbusAccess.IsConnected)
-            //    return;
             while (!_cts.Token.IsCancellationRequested)
             {
-                try
+                _isRunningEvent.WaitOne(); // 等待信号量放行
+
+                _cts.Token.ThrowIfCancellationRequested();
+
+                var IN = _modbusAccess.ReadIN(0, 500);
+                var OP = _modbusAccess.ReadOP(0, 500);
+                var Bit = _modbusAccess.ReadBit(0, 500);
+                var Word1 = _modbusAccess.ReadWord(0, 100);
+                var Long1 = _modbusAccess.ReadLong(3000, 100);
+                var Float1 = _modbusAccess.ReadFloat(6000, 100);
+                var Word2 = _modbusAccess.ReadWord(100, 100);
+                var Long2 = _modbusAccess.ReadLong(3100, 100);
+                var Float2 = _modbusAccess.ReadFloat(6100, 100);
+
+                var Alert = _modbusAccess.ReadBit(100, 10);
+                var Production = _modbusAccess.ReadBit(200, 1);
+
+                for (ushort i = 0; i < 500; i++)
                 {
-                    if (Flag)
-                    {
-                        var IN = await _modbusAccess.ReadINAsync(0, 100);
-                        var OP = await _modbusAccess.ReadOPAsync(0, 100);
-                        var Bit = await _modbusAccess.ReadBitAsync(0, 100);
-                        var Word = await _modbusAccess.ReadWordAsync(0, 100);
-                        var Long = await _modbusAccess.ReadLongAsync(3000, 100);
-                        var Float = await _modbusAccess.ReadFloatAsync(6000, 100);
-                        var Alert = await _modbusAccess.ReadBitAsync(100, 10);
-                        var Production = await _modbusAccess.ReadBitAsync(200, 1);
-
-                        for (int i = 0; i < 100; i++)
-                        {
-                            DataIN[i] = IN[i];
-                            DataOP[i] = OP[i];
-                            DataBit[i] = Bit[i];
-                            DataWord[i] = Word[i];
-                            DataLong[i] = Long[i];
-                            DataFloat[i] = Float[i];
-                        }
-
-                        for (int i = 0; i < 10; i++)
-                        {
-                            DataAlert[i].Value = Alert[i];
-                        }
-
-                        ProductionFlag = Production[0];
-
-                        Thread.Sleep(100);
-                    }
+                    DataIN[i] = IN[i];
+                    DataOP[i] = OP[i];
+                    DataBit[i] = Bit[i];
                 }
-                catch (OperationCanceledException)
+
+                for (ushort i = 0; i < 100; i++)
                 {
-                    break; // 正常退出
+                    DataWord[i] = Word1[i];
+                    DataLong[i] = Long1[i];
+                    DataFloat[i] = Float1[i];
+                    DataWord[i + 100] = Word2[i];
+                    DataLong[i + 100] = Long2[i];
+                    DataFloat[i + 100] = Float2[i];
                 }
+
+                for (int i = 0; i < 10; i++)
+                {
+                    DataAlert[i].Value = Alert[i];
+                }
+
+                ProductionFlag = Production[0];
+
+                Thread.Sleep(100);
             }
         }
         catch (Exception ex)
@@ -184,37 +205,37 @@ public partial class ModbusService : ObservableObject, IModbusService, IDisposab
 
     public async Task WriteOPAsync(ushort startAddress, bool value)
     {
-        Flag = false;
+        Pause();
         await _modbusAccess.WriteOPAsync(startAddress, value);
-        Flag = true;
+        Resume();
     }
 
     public async Task WriteBitAsync(ushort startAddress, bool value)
     {
-        Flag = false;
+        Pause();
         await _modbusAccess.WriteBitAsync(startAddress, value);
-        Flag = true;
+        Resume();
     }
 
     public async Task WriteWordAsync(ushort startAddress, ushort value)
     {
-        Flag = false;
+        Pause();
         await _modbusAccess.WriteWordAsync(startAddress, value);
-        Flag = true;
+        Resume();
     }
 
     public async Task WriteLongAsync(ushort startAddress, int value)
     {
-        Flag = false;
+        Pause();
         await _modbusAccess.WriteLongAsync(startAddress, value);
-        Flag = true;
+        Resume();
     }
 
     public async Task WriteFloatAsync(ushort startAddress, float value)
     {
-        Flag = false;
+        Pause();
         await _modbusAccess.WriteFloatAsync(startAddress, value);
-        Flag = true;
+        Resume();
     }
 
     public void Dispose()

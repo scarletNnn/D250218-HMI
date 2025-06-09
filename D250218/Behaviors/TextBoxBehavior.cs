@@ -34,7 +34,8 @@ public class TextBoxBehavior : Behavior<TextBox>
             MessageBox.Show("权限不足");
             return;
         }
-        _modbusService.Flag = false;
+
+        _modbusService.Pause();
     }
 
     private async void AssociatedObject_LostFocusAsync(object sender, RoutedEventArgs e)
@@ -74,6 +75,6 @@ public class TextBoxBehavior : Behavior<TextBox>
             //如果 Command 或 Behavior 中涉及异步操作（如 async/await），但未正确等待异步任务，异常可能被隐藏在 Task 中未触发。
         }
 
-        _modbusService.Flag = true;
+        _modbusService.Resume();
     }
 }

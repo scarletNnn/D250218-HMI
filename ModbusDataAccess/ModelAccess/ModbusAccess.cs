@@ -36,11 +36,11 @@ public class ModbusAccess : IModbusAccess
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<bool[]> ReadINAsync(ushort startAddress, ushort count)
+    public bool[] ReadIN(ushort startAddress, ushort count)
     {
         if (_modbusMaster == null)
             throw new InvalidOperationException();
-        var result = await _modbusMaster.ReadInputsAsync(1, startAddress, count);
+        var result = _modbusMaster.ReadInputs(1, startAddress, count);
         return result;
     }
 
@@ -51,11 +51,11 @@ public class ModbusAccess : IModbusAccess
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<bool[]> ReadOPAsync(ushort startAddress, ushort count)
+    public bool[] ReadOP(ushort startAddress, ushort count)
     {
         if (_modbusMaster == null)
             throw new InvalidOperationException();
-        var result = await _modbusMaster.ReadInputsAsync(1, (ushort)(startAddress + 10000), count);
+        var result = _modbusMaster.ReadInputs(1, (ushort)(startAddress + 10000), count);
         return result;
     }
 
@@ -66,11 +66,11 @@ public class ModbusAccess : IModbusAccess
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<bool[]> ReadBitAsync(ushort startAddress, ushort count)
+    public bool[] ReadBit(ushort startAddress, ushort count)
     {
         if (_modbusMaster == null)
             throw new InvalidOperationException();
-        var result = await _modbusMaster.ReadCoilsAsync(1, startAddress, count);
+        var result = _modbusMaster.ReadCoils(1, startAddress, count);
         return result;
     }
 
@@ -81,11 +81,11 @@ public class ModbusAccess : IModbusAccess
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<short[]> ReadWordAsync(ushort startAddress, ushort count)
+    public short[] ReadWord(ushort startAddress, ushort count)
     {
         if (_modbusMaster == null)
             throw new InvalidOperationException();
-        var result = await _modbusMaster.ReadHoldingRegistersAsync(1, startAddress, count);
+        var result = _modbusMaster.ReadHoldingRegisters(1, startAddress, count);
         short[] res = new short[count];
         for (int i = 0; i < result.Length; i++)
         {
@@ -102,11 +102,11 @@ public class ModbusAccess : IModbusAccess
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<int[]> ReadLongAsync(ushort startAddress, ushort count)
+    public int[] ReadLong(ushort startAddress, ushort count)
     {
         if (_modbusMaster == null)
             throw new InvalidOperationException();
-        var result = await _modbusMaster.ReadHoldingRegistersAsync(1, startAddress, count);
+        var result = _modbusMaster.ReadHoldingRegisters(1, startAddress, count);
         int[] res = new int[count];
         for (int i = 0; i < result.Length / 2; i++)
         {
@@ -123,11 +123,11 @@ public class ModbusAccess : IModbusAccess
     /// <param name="count"></param>
     /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
-    public async Task<float[]> ReadFloatAsync(ushort startAddress, ushort count)
+    public float[] ReadFloat(ushort startAddress, ushort count)
     {
         if (_modbusMaster == null)
             throw new InvalidOperationException();
-        var result = await _modbusMaster.ReadHoldingRegistersAsync(1, startAddress, count);
+        var result = _modbusMaster.ReadHoldingRegisters(1, startAddress, count);
         byte[] byteArray = result.SelectMany(BitConverter.GetBytes).ToArray();
         float value = BitConverter.ToSingle(byteArray, 0); //ABCD=>BADC
         float[] res = new float[count];
